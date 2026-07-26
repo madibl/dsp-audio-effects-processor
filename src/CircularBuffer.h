@@ -22,7 +22,7 @@ public:
     void push(T item) {
         std::unique_lock<std::mutex> lock(mutex_);
         // wait until there's room - lambda checks the condition every time we wake, which protects agains spurious wakeups
-        not_full_.wait(lock, [this] { return queue_.size() < capacity_ || done_; })
+        not_full_.wait(lock, [this] { return queue_.size() < capacity_ || done_; });
         if (done_) return;
         queue_.push(std::move(item));
         lock.unlock();
@@ -34,8 +34,9 @@ public:
      */
     bool pop(T& out) {
         std::unique_lock<std::mutex> lock(mutex_);
-        not_empty_.wait(lock, [this] { return !queue.empty() || done_; });
+        not_empty_.wait(lock, [this] { return !queue_.empty() || done_; });
         if (queue_.empty()) return false;
+        out = std::move(queue_.front());
         queue_.pop();
         lock.unlock();
         not_full_.notify_one(); // wake up a waiting producer
