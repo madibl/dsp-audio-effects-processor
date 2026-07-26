@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/madibl/Desktop/coding projects/dsp/build",
+  "command": "/usr/bin/clang++ -I\"/Users/madibl/Desktop/coding projects/dsp/dependencies\" -g -std=gnu++17 -arch arm64 -o CMakeFiles/audio_pipeline.dir/src/main.cpp.o -c \"/Users/madibl/Desktop/coding projects/dsp/src/main.cpp\"",
+  "file": "/Users/madibl/Desktop/coding projects/dsp/src/main.cpp",
+  "output": "/Users/madibl/Desktop/coding projects/dsp/build/CMakeFiles/audio_pipeline.dir/src/main.cpp.o"
+}
+]
